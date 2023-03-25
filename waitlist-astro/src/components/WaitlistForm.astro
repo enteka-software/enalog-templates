@@ -1,0 +1,47 @@
+---
+---
+
+<div class="mx-auto md:w-1/2 mt-8 px-6 md:px-0">
+  <p class="mb-2 font-semibold text-gray-700">
+    Join 314 others on the waitlist
+  </p>
+  <form id="waitlist" class="flex items-stretch gap-2">
+    <input
+      type="email"
+      name="email"
+      id="email"
+      required
+      class="w-full border-2 rounded border-primary/25 p-2"
+    />
+    <button
+      type="submit"
+      class="border-2 border-primary/25 bg-primary/75 hover:bg-primary/25 md:bg-primary/10 text-white md:text-primary rounded px-6"
+      >Join</button
+    >
+    <p class="hidden">Thank you for joining the waitlist!</p>
+  </form>
+</div>
+
+<script>
+  import { pushEvent } from "enalog";
+
+  const form = document.getElementById("waitlist");
+
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = <HTMLInputElement>document.getElementById("email");
+
+      pushEvent("", {
+        project: "merge-tree-waitlist",
+        name: "user-joined-waitlist",
+        description: "User joined the waitlist!",
+        icon: "🥳",
+        push: false,
+        tags: ["waitlist", "landing-page", "mergetree"],
+        meta: { user: email !== null ? email.value : "" },
+      });
+    });
+  }
+</script>
