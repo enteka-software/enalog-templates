@@ -30,7 +30,7 @@
 
       const email = <HTMLInputElement>document.getElementById("email");
 
-      await pushEvent("", {
+      await pushEvent(`${import.meta.env.PUBLIC_ENALOG_API_TOKEN}`, {
         project: "merge-tree-waitlist",
         name: "user-joined-waitlist",
         description: "User joined the waitlist!",
